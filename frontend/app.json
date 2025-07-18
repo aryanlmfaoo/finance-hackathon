@@ -1,7 +1,10 @@
 {
   "expo": {
-    "scheme": "acme",
+    "scheme": "UMEED",
+    "slug": "umeed",
+    "owner": "aryan",
     "userInterfaceStyle": "automatic",
+    "platforms": ["ios", "android"],
     "orientation": "default",
     "web": {
       "output": "static"
@@ -12,7 +15,8 @@
         {
           "origin": "https://n"
         }
-      ]
+      ],
+      "expo-web-browser"
     ],
     "name": "nativewind",
     "slug": "nativewind"

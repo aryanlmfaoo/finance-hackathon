@@ -1,14 +1,12 @@
 import { Link } from "expo-router";
-import React from "react";
-import { Text, View } from "react-native";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { Text, View, Button } from "react-native";
 
 export default function Page() {
   return (
-    <View className="flex flex-1 justify-center items-center">
-      <Text className="">Hello World</Text>
-      <Link href="/quiz">Quiz Page</Link>
-    </View>
+    <View className={`flex-1 justify-center items-center bg-white dark:bg-neutral-900`}>
+      <Text className="text-black dark:text-white">Hello World</Text>
+      <Link href="/home/quiz" className="text-black dark:text-white">Quiz Page</Link>
+      <Link href="/login" className="text-black dark:text-white">Login Page</Link>
+    </View >
   );
 }
-
