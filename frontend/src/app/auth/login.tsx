@@ -1,5 +1,22 @@
 import { Text, SafeAreaView, Platform, StatusBar, Image, TouchableOpacity, useColorScheme } from "react-native";
+import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 
+const SignInWithGoogle = async () => {
+  const provider = new GoogleAuthProvider();
+  const auth = getAuth()
+  try {
+    const result = await signInWithPopup(auth, provider)
+    const credential = GoogleAuthProvider.credentialFromResult(result);
+    const token = credential.accessToken;
+    const user = result.user;
+  }
+  catch (error) {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    const email = error.customData.email;
+    const credential = GoogleAuthProvider.credentialFromError(error);
+  }
+}
 
 export default function Login() {
   return (
@@ -11,7 +28,7 @@ export default function Login() {
     >
       {/* Logo - Responsive, centered */}
       <Image
-        source={useColorScheme() === 'light' ? require('../public/UmeedFullLight.png') : require('../public/UmeedFullDark.png')}
+        source={useColorScheme() === 'light' ? require('../../public/UmeedFullLight.png') : require('../../public/UmeedFullDark.png')}
         className="w-[230px] h-[96px] mb-10"
         resizeMode="contain"
         accessibilityLabel="Umeed Logo"
@@ -22,9 +39,10 @@ export default function Login() {
         activeOpacity={0.85}
         accessibilityRole="button"
         accessibilityLabel="Sign in with Google"
+        onPress={SignInWithGoogle}
       >
         <Image
-          source={require('../public/GoogleLogo.png')}
+          source={require('../../public/GoogleLogo.png')}
           className="w-6 h-6 mr-3"
           resizeMode="contain"
           accessibilityLabel="Google Logo"

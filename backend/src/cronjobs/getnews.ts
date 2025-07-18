@@ -8,7 +8,7 @@ const db = getFirestore();
 schedule('0 0 * * *', async () => {
     console.log(`start`);
 
-    const res =  await axios.get(`https://newsapi.org/v2/everything?q=scam AND (money OR finance)&apiKey=${process.env.NEWS_API_KEY}`);
+    const res =  await axios.get(`https://newsapi.org/v2/everything?q=(scam OR fraud) AND (money OR finance OR bank OR loan OR crypto OR investment)&apiKey=${process.env.NEWS_API_KEY}`);
     const data = res.data
     const docRef = db.collection('news').doc('data');
     await docRef.set(data);

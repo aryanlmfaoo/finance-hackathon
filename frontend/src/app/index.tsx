@@ -1,12 +1,17 @@
+import { useRouter } from "expo-router";
+import { Text, SafeAreaView } from 'react-native'
 import { Link } from "expo-router";
-import { Text, View, Button } from "react-native";
 
-export default function Page() {
-  return (
-    <View className={`flex-1 justify-center items-center bg-white dark:bg-neutral-900`}>
-      <Text className="text-black dark:text-white">Hello World</Text>
-      <Link href="/home/quiz" className="text-black dark:text-white">Quiz Page</Link>
-      <Link href="/login" className="text-black dark:text-white">Login Page</Link>
-    </View >
-  );
+
+export default function index() {
+    const router = useRouter()
+    return (
+        <>
+            <SafeAreaView className="flex-1 justify-center items-center dark:bg-neutral-900">
+                <Text className=" dark:text-white">Hello World</Text>
+                <Link className=" dark:text-white" href="/auth/login">Login</Link>
+                <Link className=" dark:text-white" href="/home">Home</Link>
+            </SafeAreaView>
+        </>
+    );
 }

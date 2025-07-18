@@ -1,10 +1,10 @@
 import React from "react";
-import { View, Text } from "react-native";
+import { SafeAreaView, Text } from "react-native";
 
 export default function FeedScreen() {
   return (
-    <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-      <Text>Feed Page</Text>
-    </View>
+    <SafeAreaView className="bg-white dark:bg-neutral-900 flex-1 justify-center items-center">
+      <Text className="text-black dark:text-white">Feed Page</Text>
+    </SafeAreaView>
   );
 } 

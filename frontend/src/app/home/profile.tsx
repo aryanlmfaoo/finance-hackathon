@@ -1,10 +1,10 @@
 import React from "react";
-import { View, Text } from "react-native";
+import { SafeAreaView, Text } from "react-native";
 
 export default function ProfileScreen() {
   return (
-    <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-      <Text>Profile Page</Text>
-    </View>
+    <SafeAreaView className="bg-white dark:bg-neutral-900 flex-1 justify-center items-center">
+      <Text className="text-black dark:text-white">Profile Page</Text>
+    </SafeAreaView>
   );
 } 
