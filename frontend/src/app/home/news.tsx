@@ -1,12 +1,13 @@
 import React, { useState } from "react";
-import { View, SafeAreaView, Text, Image, FlatList, Platform, StatusBar } from "react-native";
+import { View, SafeAreaView, Text, Image, FlatList, Platform, StatusBar, Pressable, Dimensions } from "react-native";
 import { Link } from "expo-router";
 import { useColorScheme } from "react-native";
 
-const PAGE_SIZE = 10; // Number of articles to load per batch
+const PAGE_SIZE = 10;
+const { width } = Dimensions.get('window');
 
 export default function NewsScreen() {
-    // All articles (replace with your data fetching logic if needed)
+    const theme = useColorScheme();
     const allArticles = [
         {
             "source": {
@@ -141,6 +142,19 @@ export default function NewsScreen() {
         {
             "source": {
                 "id": null,
+                "name": "Gizmodo.com"
+            },
+            "author": "Lucas Ropek",
+            "title": "We Finally Know How Much Martin Shkreli Charged for That Wu-Tang Clan Album",
+            "description": "A longstanding mystery surrounding the album has been solved.",
+            "url": "https://gizmodo.com/we-finally-know-how-much-martin-shkreli-charged-for-that-wu-tang-clan-album-2000631397",
+            "urlToImage": "https://gizmodo.com/app/uploads/2024/10/martin-shkreli-trial.jpg",
+            "publishedAt": "2025-07-18T20:35:04Z",
+            "content": "The saga of Once Upon a Time in Shaolin, the one-of-a-kind Wu-Tang Clan album that Martin “pharma bro” Shkreli bought for approximately $2 million in 2015, continues. The album’s contents have always… [+2487 chars]"
+        },
+        {
+            "source": {
+                "id": null,
                 "name": "Yahoo Entertainment"
             },
             "author": "Maurie Backman",
@@ -167,6 +181,19 @@ export default function NewsScreen() {
         {
             "source": {
                 "id": null,
+                "name": "BBC News"
+            },
+            "author": null,
+            "title": "Romance scam victim travels 700km 'to marry French beauty queen'",
+            "description": "The Belgian turned up at the home of Sophie Vouzelaud in France only to realise he had been a victim of fraud.",
+            "url": "https://www.bbc.com/news/articles/c2ezl21p4jeo",
+            "urlToImage": "https://ichef.bbci.co.uk/news/1024/branded_news/2479/live/d8e29370-63ea-11f0-82cf-cfdaec0ea16c.jpg",
+            "publishedAt": "2025-07-18T16:11:30Z",
+            "content": "A Belgian man has travelled 760km (472 miles) to meet a French beauty queen he had been led to believe would be his future wife, only to realise he had been a victim of online romance fraud.\r\nMichel,… [+2300 chars]"
+        },
+        {
+            "source": {
+                "id": null,
                 "name": "9to5Mac"
             },
             "author": "Marcus Mendes",
@@ -189,6 +216,19 @@ export default function NewsScreen() {
             "urlToImage": "https://photos5.appleinsider.com/gallery/58048-118232-53864-108358-bitcoin-xl-xl.jpg",
             "publishedAt": "2025-06-19T15:05:47Z",
             "content": "An App Store user is suing Apple because she was duped by a fake cryptocurrency app, neglecting her own role in her choosing to send money to fairly obvious criminals.\r\nNo question, Apple's app revie… [+5873 chars]"
+        },
+        {
+            "source": {
+                "id": null,
+                "name": "Gizmodo.com"
+            },
+            "author": "Luc Olinga",
+            "title": "Crypto’s Wild West Era Is Over",
+            "description": "The GENIUS Act brings crypto out of the shadows and into the American financial system.",
+            "url": "https://gizmodo.com/cryptos-wild-west-era-is-over-2000631148",
+            "urlToImage": "https://gizmodo.com/app/uploads/2025/07/bitcoin-photo-1200x675.jpg",
+            "publishedAt": "2025-07-18T04:49:25Z",
+            "content": "For more than a decade, cryptocurrency lived in a regulatory gray zone. Loved by libertarians, feared by bankers, and mocked by lawmakers, it was treated like a side project of the internet, too weir… [+3126 chars]"
         },
         {
             "source": {
@@ -270,6 +310,32 @@ export default function NewsScreen() {
         },
         {
             "source": {
+                "id": "business-insider",
+                "name": "Business Insider"
+            },
+            "author": "Jack Newsham,Bryan Metzger",
+            "title": "Senate advances measure to prosecute fraudulent COVID payouts for musicians and restaurants",
+            "description": "A Senate bill targeting fraud charges tied to the Shuttered Venue Operators Grant, which BI previously reported on, moved forward this week.",
+            "url": "https://www.businessinsider.com/bill-targeting-fraudulent-covid-payouts-for-musicians-moves-forward-2025-7",
+            "urlToImage": "https://i.insider.com/68793ec63d5881a51c1d892b?width=1200&format=jpeg",
+            "publishedAt": "2025-07-17T21:01:29Z",
+            "content": "Republican Sen. Joni Ernst of Iowa at a press conference on Capitol Hill on September 19, 2023.Anna Moneymaker/Getty Images\r\n<ul><li>The US government spent $5 trillion to stimulate the economy durin… [+4268 chars]"
+        },
+        {
+            "source": {
+                "id": null,
+                "name": "NPR"
+            },
+            "author": "Alana Wise",
+            "title": "Louisiana police chiefs charged in immigrant visa fraud scheme",
+            "description": "Three current and former police chiefs, a marshal and a business owner were charged with falsifying police reports in a years-long visa scheme in Louisiana.",
+            "url": "https://www.npr.org/2025/07/17/nx-s1-5471309/louisiana-immigrant-visa-fraud-scheme",
+            "urlToImage": "https://npr.brightspotcdn.com/dims3/default/strip/false/crop/6997x3936+0+365/resize/1400/quality/100/format/jpeg/?url=http%3A%2F%2Fnpr-brightspot.s3.amazonaws.com%2F70%2F49%2F17f89dbd4d8cb65d9666868c820a%2Fap25100695348366.jpg",
+            "publishedAt": "2025-07-18T00:03:40Z",
+            "content": "Federal prosecutors have indicted five people in Louisiana, including three current and former police chiefs, in an alleged scheme to file bogus police reports that enabled immigrants to apply for sp… [+2174 chars]"
+        },
+        {
+            "source": {
                 "id": "fox-news",
                 "name": "Fox News"
             },
@@ -280,6 +346,19 @@ export default function NewsScreen() {
             "urlToImage": "https://static.foxnews.com/foxnews.com/content/uploads/2025/07/3-5-steps-to-protect-your-parents-from-family-fraud-before-its-too-late.jpg",
             "publishedAt": "2025-07-13T11:00:45Z",
             "content": "Youd like to believe no one in your family could ever scam your parents. But what if the danger isnt a stranger at all? What if its someone they already trust? What if its even your sibling or an est… [+6686 chars]"
+        },
+        {
+            "source": {
+                "id": "the-verge",
+                "name": "The Verge"
+            },
+            "author": "Lauren Feiner",
+            "title": "What Big Tech got out of Trump’s Big Beautiful Bill",
+            "description": "The massive budget bill signed into law by President Donald Trump on Independence Day didn't include everything on Big Tech's wishlist, but the industry's largest players stand to gain significantly from several provisions in the One Big Beautiful Bill Act. T…",
+            "url": "https://www.theverge.com/politics/709172/big-tech-trump-big-beautiful-bill",
+            "urlToImage": "https://platform.theverge.com/wp-content/uploads/sites/2/chorus/uploads/chorus_asset/file/25545717/STK481_STK432_CONGRESS_GOVERNMENT_CIVRGINIA_D.jpg?quality=90&strip=all&crop=0%2C10.732984293194%2C100%2C78.534031413613&w=1200",
+            "publishedAt": "2025-07-17T17:39:24Z",
+            "content": "From bigger R&amp;D write-offs to new surveillance tech funding opportunities.\r\nThe massive budget bill signed into law by President Donald Trump on Independence Day didnt include everything on Big T… [+7092 chars]"
         },
         {
             "source": {
@@ -297,19 +376,6 @@ export default function NewsScreen() {
         {
             "source": {
                 "id": null,
-                "name": "Schneier.com"
-            },
-            "author": "Bruce Schneier",
-            "title": "Ghostwriting Scam",
-            "description": "The variations seem to be endless. Here’s a fake ghostwriting scam that seems to be making boatloads of money.\nThis is a big story about scams being run from Texas and Pakistan estimated to run into tens if not hundreds of millions of dollars, viciously defra…",
-            "url": "https://www.schneier.com/blog/archives/2025/06/ghostwriting-scam.html",
-            "urlToImage": null,
-            "publishedAt": "2025-06-18T14:37:27Z",
-            "content": "The variations seem to be endless. Here’s a fake ghostwriting scam that seems to be making boatloads of money.\r\nThis is a big story about scams being run from Texas and Pakistan estimated to run into… [+498 chars]"
-        },
-        {
-            "source": {
-                "id": null,
                 "name": "Anthropic.com"
             },
             "author": null,
@@ -319,6 +385,19 @@ export default function NewsScreen() {
             "urlToImage": "https://cdn.sanity.io/images/4zrzovbb/website/232ce3361806a4ceafb2b1f40d0e305a0aa45b11-2400x1260.png",
             "publishedAt": "2025-07-15T22:03:50Z",
             "content": "Today, we're introducing a comprehensive solution for financial analysis that transforms how finance professionals analyze markets, conduct research, and make investment decisions with Claude.\r\nThe F… [+7844 chars]"
+        },
+        {
+            "source": {
+                "id": null,
+                "name": "Yahoo Entertainment"
+            },
+            "author": "Maurie Backman",
+            "title": "Las Vegas residents denied reimbursement from the state after reporting they lost thousands in contractor scam",
+            "description": "Putting consumer protections in place only goes so far when there’s red tape to cut through.",
+            "url": "https://www.yahoo.com/news/las-vegas-residents-denied-reimbursement-103000544.html",
+            "urlToImage": "https://media.zenfs.com/en/moneywise_327/40528d1fe583b9bc0d9afa247e40189a",
+            "publishedAt": "2025-07-18T10:30:00Z",
+            "content": "On June 10, the Nevada State Contractors Board issued a consumer alert about a company owner and associate who were arrested for fraudulent construction practices. The company in question was Patio C… [+4900 chars]"
         },
         {
             "source": {
@@ -397,19 +476,6 @@ export default function NewsScreen() {
             "urlToImage": "https://media.zenfs.com/en/moneywise_327/302cbbba26d31a8f1695b8cb7ab6e5a0",
             "publishedAt": "2025-06-26T11:00:00Z",
             "content": "Your credit card can be a lifeline in tough financial times, but it can also turn into a nightmare in the blink of an eye.\r\nJust ask Andrew St. Hilaire, a small business owner who recently discovered… [+6104 chars]"
-        },
-        {
-            "source": {
-                "id": "fox-news",
-                "name": "Fox News"
-            },
-            "author": "Kurt Knutsson, CyberGuy Report",
-            "title": "10 signs your personal data is being sold online",
-            "description": "A personal data protection guide revealing 10 signs your information is circulating among data brokers and practical strategies to regain control of your digital footprint.",
-            "url": "https://www.foxnews.com/tech/10-signs-your-personal-data-being-sold-online",
-            "urlToImage": "https://static.foxnews.com/foxnews.com/content/uploads/2025/06/3-10-signs-your-personal-data-is-being-sold-online.jpg",
-            "publishedAt": "2025-06-18T14:00:52Z",
-            "content": "Your personal data is probably being sold right now. Scam calls, junk emails, and weird login alerts aren't random. They're warning signs that your information is being circulated through data broker… [+10570 chars]"
         },
         {
             "source": {
@@ -583,6 +649,19 @@ export default function NewsScreen() {
         {
             "source": {
                 "id": null,
+                "name": "GameSpot"
+            },
+            "author": "Lan Pitts",
+            "title": "Tomb Raider Composer Sentenced To Over A Year For COVID Relief Fraud",
+            "description": "Peter Connelly, the video game composer and sound designer on the Tomb Raider Remaster series and Tomb Raider: Chronicles, has been sentenced to 16 months in prison for fraudulently applying for a government COVID-19 support loan. Based in Peterlee, County Du…",
+            "url": "https://www.gamespot.com/articles/tomb-raider-composer-sentenced-to-over-a-year-for-covid-relief-fraud/1100-6533268/",
+            "urlToImage": "https://www.gamespot.com/a/uploads/screen_kubrick/1597/15976769/4534472-image.jpg",
+            "publishedAt": "2025-07-18T13:39:00Z",
+            "content": "Peter Connelly, the video game composer and sound designer on the Tomb Raider Remaster series and Tomb Raider: Chronicles, has been sentenced to 16 months in prison for fraudulently applying for a go… [+1860 chars]"
+        },
+        {
+            "source": {
+                "id": null,
                 "name": "Salon"
             },
             "author": "Cezary Podkul",
@@ -644,19 +723,6 @@ export default function NewsScreen() {
             "urlToImage": "https://img-cdn.tnwcdn.com/image/tnw-blurple?filter_last=1&fit=1280%2C640&url=https%3A%2F%2Fcdn0.tnwcdn.com%2Fwp-content%2Fblogs.dir%2F1%2Ffiles%2F2023%2F08%2FEUChinaexport.jpg&signature=c4ae5b34e7e91c490699ecc1f970d6ee",
             "publishedAt": "2025-07-01T15:14:23Z",
             "content": "Despite a cautious VC climate and ongoing geopolitical jitters, European startups are still attracting serious cash. \r\nCovering everything from AI drug discovery and space launches to quantum softwar… [+5834 chars]"
-        },
-        {
-            "source": {
-                "id": "business-insider",
-                "name": "Business Insider"
-            },
-            "author": "ralexander@insider.com (Reed Alexander)",
-            "title": "Citi's 'accelerating' its AI strategy with new leaders. Here's how they're readying the firm for a new future.",
-            "description": "Citi is consolidating its AI strategy behind three key leaders. They're also eying a push into the next generation of the technology.",
-            "url": "https://www.businessinsider.com/citigroup-jane-fraser-ai-strategy-new-leadership-agentic-ai-2025-6",
-            "urlToImage": "https://i.insider.com/6852e70085e81483682c5a7f?width=1200&format=jpeg",
-            "publishedAt": "2025-06-18T16:42:59Z",
-            "content": "Citigroup's Jane Fraser is on a mission to modernize the global bank. Three executives have been appointed to ensure AI plays a big role in that.\r\nAs part of the push, the firm which has long struggl… [+4066 chars]"
         },
         {
             "source": {
@@ -865,6 +931,19 @@ export default function NewsScreen() {
             "urlToImage": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Belastingdienst_Toeslagen_enveloppen.jpg/1200px-Belastingdienst_Toeslagen_enveloppen.jpg",
             "publishedAt": "2025-07-11T20:38:46Z",
             "content": "The typical red-and-white envelopes used by the Benefits agency, previously part of the Belastingdienst\r\nThe Dutch childcare benefits scandal (Dutch: kinderopvangtoeslagaffaire or toeslagenaffaire, l… [+40556 chars]"
+        },
+        {
+            "source": {
+                "id": null,
+                "name": "Eurogamer.net"
+            },
+            "author": "Matt Wales",
+            "title": "Tomb Raider composer jailed for 16 months after being found guilty of fraud",
+            "description": "British video game composer and sound designer Peter Connelly, known for his work on the Tomb Raider series alongside the likes of Watch Dogs and Dead Island 2, has been jailed for 16 months after being found guilty of fraudulently claiming a second Covid loa…",
+            "url": "https://www.eurogamer.net/tomb-raider-composer-jailed-for-16-months-after-being-found-guilty-of-fraud",
+            "urlToImage": "https://assetsio.gnwcdn.com/tomb-raider-jail.jpg?width=1200&height=630&fit=crop&enable=upscale&auto=webp",
+            "publishedAt": "2025-07-18T13:32:32Z",
+            "content": "British video game composer and sound designer Peter Connelly, known for his work on the Tomb Raider series alongside the likes of Watch Dogs and Dead Island 2, has been jailed for 16 months after be… [+2055 chars]"
         },
         {
             "source": {
@@ -1129,19 +1208,6 @@ export default function NewsScreen() {
         {
             "source": {
                 "id": null,
-                "name": "Forbes"
-            },
-            "author": "Jaime Catmull, Contributor, \n Jaime Catmull, Contributor\n https://www.forbes.com/sites/jaimecatmull/",
-            "title": "Don't Get Scammed: 5 Ways To Outsmart Today's Most Costly Online Fraud",
-            "description": "With scammers growing more sophisticated by the day, protecting your identity and money is no longer optional.",
-            "url": "https://www.forbes.com/sites/jaimecatmull/2025/06/18/dont-get-scammed-5-ways-to-outsmart-todays-most-costly-online-fraud/",
-            "urlToImage": "https://imageio.forbes.com/specials-images/imageserve/685240c899d64204dbe579a4/0x0.jpg?format=jpg&height=900&width=1600&fit=bounds",
-            "publishedAt": "2025-06-18T19:09:52Z",
-            "content": "Fraud Alert in red keys on high-tech computer keyboard background with security engraved lock on ... More fake credit cards. Concept of Internet security, data privacy, cybercrime prevention for onli… [+3271 chars]"
-        },
-        {
-            "source": {
-                "id": null,
                 "name": "BBC News"
             },
             "author": null,
@@ -1155,19 +1221,6 @@ export default function NewsScreen() {
         {
             "source": {
                 "id": null,
-                "name": "AppleInsider"
-            },
-            "author": "news@appleinsider.com (Sponsored Content)",
-            "title": "How to sell your iPhone fast & score a 10% trade-in bonus at Gazelle",
-            "description": "Selling your old iPhone can be time-consuming and result in lower-than-desired payments, but Gazelle removes all the friction and gets you an offer with no effort. Here's how.Get an extra 10 percent trade-in bonus on your used iPhone - Image credit: GazelleAp…",
-            "url": "https://appleinsider.com/articles/25/06/24/how-to-sell-your-iphone-fast-score-a-10-trade-in-bonus-at-gazelle",
-            "urlToImage": "https://photos5.appleinsider.com/gallery/63707-132891-gazelle-iphone-trade-in-deals-xl.jpg",
-            "publishedAt": "2025-06-24T14:37:53Z",
-            "content": "Selling your old iPhone can be time-consuming and result in lower-than-desired payments, but Gazelle removes all the friction and gets you an offer with no effort. Here's how.\r\nApple's iPhone retains… [+3357 chars]"
-        },
-        {
-            "source": {
-                "id": null,
                 "name": "Infosecurity Magazine"
             },
             "author": "Phil Muncaster",
@@ -1177,6 +1230,19 @@ export default function NewsScreen() {
             "urlToImage": "https://assets.infosecurity-magazine.com/webpage/og/e39052b5-42ed-4309-bbac-19d938f26a3e.jpg",
             "publishedAt": "2025-07-11T09:15:00Z",
             "content": "A growing number of young people are losing money after acting on the advice of unregulated “finfluencers” they follow on social media, a UK high street bank has warned.\r\nTSB polled around 1800 peopl… [+3466 chars]"
+        },
+        {
+            "source": {
+                "id": null,
+                "name": "AppleInsider"
+            },
+            "author": "news@appleinsider.com (Sponsored Content)",
+            "title": "How to sell your iPhone fast & score a 10% trade-in bonus at Gazelle",
+            "description": "Selling your old iPhone can be time-consuming and result in lower-than-desired payments, but Gazelle removes all the friction and gets you an offer with no effort. Here's how.Get an extra 10 percent trade-in bonus on your used iPhone - Image credit: GazelleAp…",
+            "url": "https://appleinsider.com/articles/25/06/24/how-to-sell-your-iphone-fast-score-a-10-trade-in-bonus-at-gazelle",
+            "urlToImage": "https://photos5.appleinsider.com/gallery/63707-132891-gazelle-iphone-trade-in-deals-xl.jpg",
+            "publishedAt": "2025-06-24T14:37:53Z",
+            "content": "Selling your old iPhone can be time-consuming and result in lower-than-desired payments, but Gazelle removes all the friction and gets you an offer with no effort. Here's how.\r\nApple's iPhone retains… [+3357 chars]"
         },
         {
             "source": {
@@ -1229,79 +1295,13 @@ export default function NewsScreen() {
             "urlToImage": "https://img.assets-c3.propublica.org/images/articles/OG-danpage-ProPublica-Scammers3x2Final.jpg?crop=focalpoint&fit=crop&fp-x=0.5&fp-y=0.5&h=630&imgixProfile=propublicaAssets&q=90&w=1200&s=be7874a675d0ce0c9f7dcd40d9fc20c1",
             "publishedAt": "2025-06-25T09:00:00Z",
             "content": "ProPublica is a nonprofit newsroom that investigates abuses of power. Sign up to receive our biggest stories as soon as theyre published.\r\n<ul><li>Struggling Gatekeepers: In the face of some $44 bill… [+29864 chars]"
-        },
-        {
-            "source": {
-                "id": null,
-                "name": "Techdirt"
-            },
-            "author": "Karl Bode",
-            "title": "Our National Robocall Nightmare Is Getting Worse Under Donald Trump",
-            "description": "According to the latest data on robocalls from the YouMail Robocall Index, the scale of the U.S. robocall problem has grown by another eleven percent year over year. U.S. consumers received just over 4.8 billion robocalls in May. We’ve normalized ceding our p…",
-            "url": "https://www.techdirt.com/2025/07/02/our-national-robocall-nightmare-is-getting-worse-under-donald-trump/",
-            "urlToImage": "https://www.techdirt.com/wp-content/uploads/2025/06/Screenshot-2025-06-17-062311-1024x554.png",
-            "publishedAt": "2025-07-02T20:40:00Z",
-            "content": "from the this-is-why-we-can't-have-nice-things dept\r\nAccording to the latest data on robocalls from the YouMail Robocall Index, the scale of the U.S. robocall problem has grown by another eleven perc… [+3489 chars]"
-        },
-        {
-            "source": {
-                "id": "business-insider",
-                "name": "Business Insider"
-            },
-            "author": "Emily Stewart",
-            "title": "Surprise! You literally owe the tariffs",
-            "description": "Americans are being hit with huge tariff bills on their online orders.",
-            "url": "https://www.businessinsider.com/americans-huge-tariff-bills-online-orders-china-trump-fedex-2025-6",
-            "urlToImage": "https://i.insider.com/685315933d5881a51c1bb4b9?width=1200&format=jpeg",
-            "publishedAt": "2025-06-19T08:11:02Z",
-            "content": "Kat Omecene thought she was keeping things simple by asking her bridesmaids to buy whatever dresses they wanted for her wedding as long as it matched her color palette, of course. But now, one of the… [+13740 chars]"
-        },
-        {
-            "source": {
-                "id": null,
-                "name": "NPR"
-            },
-            "author": "Elena Moore",
-            "title": "House Republicans pass Trump's mega bill, sending the package to his desk to be signed",
-            "description": "The Republican leaders overcame objections from within their own party, marking a  victory in their quest to fulfill President Trump's campaign promises.",
-            "url": "https://www.npr.org/2025/07/03/nx-s1-5454841/house-republicans-trump-tax-bill-medicaid",
-            "urlToImage": "https://npr.brightspotcdn.com/dims3/default/strip/false/crop/6000x3375+0+313/resize/1400/quality/100/format/jpeg/?url=http%3A%2F%2Fnpr-brightspot.s3.amazonaws.com%2F98%2Fef%2Fb24822fa4b0da1bf97638790c974%2Fap25183660117009.jpg",
-            "publishedAt": "2025-07-03T18:32:35Z",
-            "content": "President Trump's massive spending and tax cut bill is on the way to his desk for a signature. The bill passed Thursday after Republican leaders in the House of Representatives convinced holdouts in … [+6791 chars]"
-        },
-        {
-            "source": {
-                "id": null,
-                "name": "Tom's Hardware UK"
-            },
-            "author": "editors@tomshardware.com (Jowi Morales) , Jowi Morales",
-            "title": "Authorities saw open Bitcoin ATM to recover scammed money — almost $32,000 seized from machine",
-            "description": "A Jasper County citizen was scammed out of $25,000, and the authorities used a power saw to seize the deposited amount from a Bitcoin ATM.",
-            "url": "https://www.tomshardware.com/tech-industry/cryptocurrency/authorities-saw-open-bitcoin-atm-to-recover-scammed-money-almost-usd32-000-seized-from-machine",
-            "urlToImage": "https://cdn.mos.cms.futurecdn.net/c6Uje2uRvM4S9hwbxnyu6P.jpg",
-            "publishedAt": "2025-06-22T12:00:00Z",
-            "content": "The Sheriff in Jasper County, Texas, located a little over 100 miles northeast of Houston, used a circular saw to break into a Bitcoin ATM after it was determined it was used for fraud. According to … [+2728 chars]"
-        },
-        {
-            "source": {
-                "id": null,
-                "name": "Yahoo Entertainment"
-            },
-            "author": "Jessica Glenza",
-            "title": "Republican senators’ proposed Medicaid cuts threaten to send red states ‘backwards’",
-            "description": "Advocates fear Senate’s version of Trump’s budget bill could leave millions without healthcare and boost corporations",
-            "url": "https://www.yahoo.com/news/republican-senators-proposed-medicaid-cuts-110012576.html",
-            "urlToImage": "https://media.zenfs.com/en/the_guardian_765/36d165867283c191b6eed6c40f6cc105",
-            "publishedAt": "2025-06-23T11:00:12Z",
-            "content": "Advocates are urgingSenateRepublicans to reject a proposal to cut billions from American healthcare to extend tax breaks that primarily benefit the wealthy and corporations.\r\nThe proposal would make … [+7909 chars]"
         }
     ]
 
-    // State for currently loaded articles
+
     const [articles, setArticles] = useState(allArticles.slice(0, PAGE_SIZE));
     const [page, setPage] = useState(1);
 
-    // Load more articles when end is reached
     const loadMore = () => {
         const nextPage = page + 1;
         const nextArticles = allArticles.slice(0, nextPage * PAGE_SIZE);
@@ -1311,41 +1311,209 @@ export default function NewsScreen() {
         }
     };
 
+    // Format time ago
+    const formatTimeAgo = (dateString) => {
+        const now = new Date();
+        const publishDate = new Date(dateString);
+        const diffInHours = Math.floor((Number(now) - Number(publishDate)) / (1000 * 60 * 60));
+
+        if (diffInHours < 1) return 'Just now';
+        if (diffInHours < 24) return `${diffInHours}h ago`;
+        const diffInDays = Math.floor(diffInHours / 24);
+        if (diffInDays < 7) return `${diffInDays}d ago`;
+        return publishDate.toLocaleDateString();
+    };
+
+    // Get source color
+    const getSourceColor = (sourceName) => {
+        const colors = ['#3B82F6', '#10B981', '#8B5CF6', '#F59E0B', '#EF4444', '#06B6D4'];
+        const index = sourceName?.length ? sourceName.length % colors.length : 0;
+        return colors[index];
+    };
+
+    const renderArticle = ({ item, index }) => {
+        const sourceColor = getSourceColor(item.source.name);
+
+        return (
+            <Link href={item.url} asChild>
+                <Pressable
+                    className={`mx-4 mb-4 rounded-2xl overflow-hidden ${theme === 'light' ? 'bg-white' : 'bg-neutral-800'
+                        }`}
+                    style={{
+                        shadowColor: '#000',
+                        shadowOffset: { width: 0, height: 2 },
+                        shadowOpacity: theme === 'light' ? 0.1 : 0.3,
+                        shadowRadius: 8,
+                        elevation: 4,
+                    }}
+                    android_ripple={{
+                        color: theme === 'light' ? '#f3f4f6' : '#374151'
+                    }}
+                >
+                    {/* Source header */}
+                    <View
+                        className="px-4 py-3 flex-row items-center justify-between"
+                        style={{ backgroundColor: sourceColor + '10' }}
+                    >
+                        <View className="flex-row items-center flex-1">
+                            <View
+                                className="w-3 h-3 rounded-full mr-2"
+                                style={{ backgroundColor: sourceColor }}
+                            />
+                            <Text
+                                className="text-sm font-semibold flex-1"
+                                style={{ color: sourceColor }}
+                                numberOfLines={1}
+                            >
+                                {item.source.name}
+                            </Text>
+                        </View>
+                        <Text
+                            className={`text-xs ${theme === 'light' ? 'text-gray-500' : 'text-gray-400'
+                                }`}
+                        >
+                            {formatTimeAgo(item.publishedAt)}
+                        </Text>
+                    </View>
+
+                    {/* Main content */}
+                    <View className="p-4">
+                        <View className="flex-row">
+                            <View className="flex-1 pr-4">
+                                <Text
+                                    className={`text-lg font-bold leading-6 mb-2 ${theme === 'light' ? 'text-black' : 'text-white'
+                                        }`}
+                                    numberOfLines={3}
+                                >
+                                    {item.title}
+                                </Text>
+
+                                <Text
+                                    className={`text-sm leading-5 ${theme === 'light' ? 'text-gray-600' : 'text-gray-300'
+                                        }`}
+                                    numberOfLines={3}
+                                >
+                                    {item.description}
+                                </Text>
+
+                                {/* Author info */}
+                                {item.author && (
+                                    <View className="flex-row items-center mt-3">
+                                        <View
+                                            className="w-6 h-6 rounded-full mr-2 items-center justify-center"
+                                            style={{ backgroundColor: sourceColor + '20' }}
+                                        >
+                                            <Text
+                                                className="text-xs font-bold"
+                                                style={{ color: sourceColor }}
+                                            >
+                                                {item.author.charAt(0).toUpperCase()}
+                                            </Text>
+                                        </View>
+                                        <Text
+                                            className={`text-xs font-medium ${theme === 'light' ? 'text-gray-500' : 'text-gray-400'
+                                                }`}
+                                        >
+                                            By {item.author}
+                                        </Text>
+                                    </View>
+                                )}
+                            </View>
+
+                            {/* Image */}
+                            <View className="w-20 h-20">
+                                {item.urlToImage ? (
+                                    <Image
+                                        source={{ uri: item.urlToImage }}
+                                        className="w-full h-full rounded-xl"
+                                        resizeMode="cover"
+                                    />
+                                ) : (
+                                    <View
+                                        className="w-full h-full rounded-xl items-center justify-center"
+                                        style={{ backgroundColor: sourceColor + '15' }}
+                                    >
+                                        <Text
+                                            className="text-2xl"
+                                            style={{ color: sourceColor }}
+                                        >
+                                            📰
+                                        </Text>
+                                    </View>
+                                )}
+                            </View>
+                        </View>
+
+                        {/* Read more indicator */}
+                        <View className="flex-row items-center justify-between mt-4 pt-3 border-t border-gray-100 dark:border-gray-700">
+                            <Text
+                                className="text-xs font-medium"
+                                style={{ color: sourceColor }}
+                            >
+                                Read full article
+                            </Text>
+                            <Text
+                                className="text-sm"
+                                style={{ color: sourceColor }}
+                            >
+                                →
+                            </Text>
+                        </View>
+                    </View>
+                </Pressable>
+            </Link>
+        );
+    };
+
     return (
         <SafeAreaView
-            className="flex-1 bg-white dark:bg-black"
-            style={{ paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0 }}>
-            <View className="px-4 py-3 border-b border-gray-200">
-                <Text className="text-2xl font-bold text-black dark:text-white">News Feed</Text>
+            className={`flex-1 ${theme === 'light' ? 'bg-gray-50' : 'bg-neutral-900'
+                }`}
+            style={{ paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0 }}
+        >
+
+            {/* Header section */}
+            <View className={`px-4 py-4 ${theme === 'light' ? 'bg-white' : 'bg-neutral-800'
+                }`}>
+                <View className="flex-row items-center justify-between">
+                    <View>
+                        <Text className={`text-2xl font-black ${theme === 'light' ? 'text-black' : 'text-white'
+                            }`}>
+                            News Feed
+                        </Text>
+                        <Text className={`text-sm mt-1 ${theme === 'light' ? 'text-gray-500' : 'text-gray-400'
+                            }`}>
+                            Stay updated with the latest financial news
+                        </Text>
+                    </View>
+                    <View className={`w-10 h-10 rounded-full items-center justify-center ${theme === 'light' ? 'bg-blue-50' : 'bg-blue-900'
+                        }`}>
+                        <Text className="text-xl">📊</Text>
+                    </View>
+                </View>
             </View>
+
             <FlatList
                 data={articles}
                 keyExtractor={(_, index) => index.toString()}
-                renderItem={({ item }) => (
-                    <Link href={item.url}>
-                        <View className="flex-row items-center justify-between px-4 py-3 border-b border-gray-100">
-                            <View className="flex-1 pr-3">
-                                <Text className="text-base font-semibold text-black dark:text-white" numberOfLines={2}>
-                                    {item.title}
-                                </Text>
-                                <Text className="text-sm text-gray-500 mt-1" numberOfLines={2}>
-                                    {item.description}
-                                </Text>
-                            </View>
-                            {item.urlToImage ? (
-                                <Image
-                                    source={{ uri: item.urlToImage }}
-                                    className="w-16 h-16 rounded-md bg-gray-200"
-                                    resizeMode="cover"
-                                />
-                            ) : (
-                                <View className="w-16 h-16 rounded-md bg-gray-200" />
-                            )}
-                        </View>
-                    </Link>
-                )}
+                renderItem={renderArticle}
                 onEndReached={loadMore}
-                onEndReachedThreshold={0.8} // Load more when 80% from bottom
+                onEndReachedThreshold={0.8}
+                contentContainerStyle={{ paddingTop: 16, paddingBottom: 32 }}
+                showsVerticalScrollIndicator={false}
+                ListEmptyComponent={
+                    <View className="items-center justify-center py-16">
+                        <Text className="text-6xl mb-4">📰</Text>
+                        <Text className={`text-center text-xl font-semibold mb-2 ${theme === 'light' ? 'text-black' : 'text-white'
+                            }`}>
+                            No news available
+                        </Text>
+                        <Text className={`text-center px-8 ${theme === 'light' ? 'text-gray-500' : 'text-gray-400'
+                            }`}>
+                            Check back later for the latest financial news and updates.
+                        </Text>
+                    </View>
+                }
             />
         </SafeAreaView>
     );

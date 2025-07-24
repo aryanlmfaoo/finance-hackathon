@@ -1,10 +1,16 @@
 {
   "expo": {
-    "scheme": "UMEED",
+    "name": "umeed",
+    "scheme": [
+      "umeed"
+    ],
     "slug": "umeed",
-    "owner": "aryan",
+    "owner": "aryanlmfaoo",
     "userInterfaceStyle": "automatic",
-    "platforms": ["ios", "android"],
+    "platforms": [
+      "ios",
+      "android"
+    ],
     "orientation": "default",
     "web": {
       "output": "static"
@@ -16,9 +22,36 @@
           "origin": "https://n"
         }
       ],
+      [
+        "expo-build-properties",
+        {
+          "ios": {
+            "useFrameworks": "static"
+          }
+        }
+      ],
+      "@react-native-firebase/app",
+      "@react-native-firebase/auth",
       "expo-web-browser"
     ],
-    "name": "nativewind",
-    "slug": "nativewind"
+    "android": {
+      "package": "com.aryanlmfaoo.umeed",
+      "googleServicesFile": "./google-services.json"
+    },
+    "extra": {
+      "router": {
+        "origin": "https://n"
+      },
+      "eas": {
+        "projectId": "6391e037-a487-4c40-a7cb-825f36155268"
+      }
+    },
+    "ios": {
+      "bundleIdentifier": "com.aryanlmfaoo.umeed",
+      "googleServicesFile": "./GoogleService-Info.plist",
+      "infoPlist": {
+        "ITSAppUsesNonExemptEncryption": false
+      }
+    }
   }
 }

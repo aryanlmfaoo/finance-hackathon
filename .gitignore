@@ -45,5 +45,8 @@ serviceaccountkey.json
 #
 .idea/
 .idea
+.vscode
 
+#other JSON files used for dev work 
+example.json
 app-example
