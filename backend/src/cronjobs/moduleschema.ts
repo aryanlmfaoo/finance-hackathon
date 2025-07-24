@@ -1,5 +1,5 @@
 import { genkit } from 'genkit';
-import { googleAI, gemini25ProExp0325 } from '@genkit-ai/googleai';
+import { googleAI, gemini15Flash } from '@genkit-ai/googleai';
 import { z } from 'zod';
 import { schedule } from 'node-cron'
 import '../database/firebase'
@@ -7,22 +7,9 @@ import { getFirestore } from 'firebase-admin/firestore';
 
 const db = getFirestore()
 
-const moduleQuizSchema = z.array(
-    z.object({
-        question: z.string().describe("The quiz question"),
-        options: z.array(
-            z.string().describe("Quiz option text")
-        ).min(2).max(2),
-        indexOfCorrectAnswer: z.number().int().min(0).max(1),
-        explanation: z.string().describe("Explanation for the correct answer")
-    })
-)
-
-//weeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
-
 const ai = genkit({
-    plugins: [googleAI({ apiKey: process.env.GOOGLE_API_KEY2 })],
-    model: gemini25ProExp0325,
+    plugins: [googleAI()],
+    model: gemini15Flash,
 });
 
 const moduleSchema = z.array(
@@ -32,8 +19,8 @@ const moduleSchema = z.array(
     })
 ).min(20)
 
-
-schedule('16 19 * * *', async () => {
+// update the crontime as planned
+schedule('11 4 * * *', async () => {
 
     const generateModuleSchema = async () => {
         const response = await ai.generate({
@@ -100,11 +87,13 @@ schedule('16 19 * * *', async () => {
         }
 
         const moduledata = JSON.parse(moduledatastring)
-        const moduleRef = db.collection('moduleSchema').doc('en')
-        const setData = await moduleRef.set({
-            data: moduledata
-        })
-        console.log(setData)
+        for (let i = 0; i < moduledata.length; i++) {
+            const moduleRef = db.collection('moduleSchema').doc(`en-${i}`)
+            const setData = await moduleRef.set({
+                metaData: moduledata[i]
+            })
+            console.log(setData)
+        }
     } catch (e) {
         console.error(e)
     }

@@ -13,8 +13,8 @@ const ai = genkit({
 console.log(`page runs`)
 export interface QuizQuestion {
     question: string;
-    options: [string, string, string, string]; // exactly 3 options
-    indexOfCorrectAnswer: 0 | 1 | 2 | 3;
+    options: [string, string]; // exactly 3 options
+    indexOfCorrectAnswer: 0 | 1;
     explanation: string;
     xpGain: number;
     xpLoss: number;
