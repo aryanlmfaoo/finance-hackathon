@@ -103,7 +103,9 @@ Example:
     try {
         await client.flushDb()
         console.log(`calling google`)
+        console.time(`start of api`)
         const quiz = await generateQuiz(weeklyThemes[day]);
+        console.timeEnd(`start of api`)
         if (quiz.message === undefined) return
         if (quiz.message.content[0].text === undefined) return
         const data = JSON.parse(quiz.message.content[0].text) as QuizQuestion[]

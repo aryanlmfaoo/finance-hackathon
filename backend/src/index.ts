@@ -13,6 +13,7 @@ import './cronjobs/getnews'
 import './cronjobs/moduleschema'
 import './cronjobs/getquiz'// update news every 24hrs using News API
 import './cronjobs/modulecontent'
+import './cronjobs/modulequestions'
 
 const app = express()
 

@@ -69,7 +69,7 @@ Create exactly **5 pages** that follow a logical learning progression:
 
 Each page must include:
 - **Clear, descriptive title** (5-10 words)
-- **Rich educational content** (50-70 words per page)
+- **Rich educational content** (80-120 words per page)
 - **Simple language** appropriate for beginners
 - **Practical examples** relevant to everyday financial situations
 
@@ -111,12 +111,12 @@ Each page must include:
 
 // Schedule 4 cron jobs for different batches
 // update the cron times as required
-schedule('20 4 * * *', () => {
+schedule('16 13 * * *', () => {
     console.log('Starting batch 1: indices 0-4')
     DBcall(0, 4)
 })
 
-schedule('0 6 23 * *', () => {
+schedule('54 12 * * *', () => {
     console.log('Starting batch 2: indices 5-9')
     DBcall(5, 9)
 })

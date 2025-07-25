@@ -20,11 +20,11 @@ const moduleSchema = z.array(
 ).min(20)
 
 // update the crontime as planned
-schedule('11 4 * * *', async () => {
+schedule('15 13 * * *', async () => {
 
     const generateModuleSchema = async () => {
         const response = await ai.generate({
-            prompt: `# Generate 20 Educational Module Metadata Entries
+            prompt: `# Generate 10 Educational Module Metadata Entries
     
     **Generate 20 educational module metadata entries for a financial literacy and fraud awareness app designed for Indian users.**
     
